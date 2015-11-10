@@ -38,18 +38,8 @@ class Module implements ConfigProviderInterface, BootstrapListenerInterface
             error_log('RENDER_ERROR : ' . $e->getError());
         });
 
-        $route = $sm->get('Router');
-        $route->addRoute('home', Literal::factory(array(
-                'route' => '/',
-                'defaults' => array(
-                    'controller' => 'MiniModule\Controller\IndexController',
-                    'action' => 'index')
-            )
-        )
-        );
-
-        $controller = $sm->get('ControllerManager');
-        $controller->setService('MiniModule\Controller\IndexController', new IndexController());
+     //   $controller = $sm->get('ControllerManager');
+      //  $controller->setService('MiniModule\Controller\IndexController', new IndexController());
     }
 
 }
