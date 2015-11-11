@@ -41,5 +41,4 @@ class Module implements ConfigProviderInterface, BootstrapListenerInterface, Aut
             ),
         );
     }
-
 }
