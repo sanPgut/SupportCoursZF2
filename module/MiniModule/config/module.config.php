@@ -43,5 +43,14 @@ return array(
         'invokables' => array(
             'MiniModule\Controller\Index' => 'MiniModule\Controller\IndexController',
         )
-    )
+    ),
+
+    'service_manager' => array(
+        'factories' => array(
+            'MiniModule\Form\Authentification' => 'MiniModule\Form\AuthentificationFormFactory',
+        ),
+        'services' => array (
+            'config_authentification_form' => include __DIR__.'/authentification.form.comfig.php',
+        ),
+    ),
 );
