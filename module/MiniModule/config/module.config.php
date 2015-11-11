@@ -12,7 +12,18 @@ return array(
                         'action' => 'index'
                     )
                 )
-            )
+            ),
+            'default' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                  'route' => '/:action',
+                    'constraints' => array(),
+                    'defaults' => array(
+                        'controller' => 'MiniModule\Controller\Index',
+                        'action' => 'index'
+                    ),
+                ),
+            ),
         )
     ),
 
@@ -23,6 +34,8 @@ return array(
             'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
 
             'mini-module/index/index' => __DIR__ . '/../view/index/index.phtml',
+            'mini-module/index/form' => __DIR__ . '/../view/index/form.phtml',
+            'mini-module/index/traite' => __DIR__ . '/../view/index/traite.phtml',
         ),
     ),
 

@@ -14,4 +14,13 @@ class IndexController extends AbstractActionController
     {
         return array();
     }
+
+    public function formAction()
+    {
+        return array();
+    }
+    public function traiteAction()
+    {
+        return array( 'login' => $_GET['log'] );
+    }
 }
