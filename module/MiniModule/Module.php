@@ -6,8 +6,14 @@ use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\Http\Literal;
 
+
+/**
+ * Class IndexController
+ * La class est temporairement déclarée dans Module.php
+ * dans le prochain commit elle sera au bon endroit mais cela nécéssite d'ajouter un loader dans l'autoload
+ * @package MiniModule
+ */
 class IndexController extends AbstractActionController
 {
     public function indexAction()
@@ -26,9 +32,8 @@ class Module implements ConfigProviderInterface, BootstrapListenerInterface
 
     public function onBootstrap(EventInterface $e)
     {
-        // $e->getTarget() renvoit Zend\MVC\Application
+        // Récupération des erreurs en ajoutant un callback qui affiche l'erreur coté serveur
         $application = $e->getTarget();
-        $sm = $application->getServiceManager();
         $event = $application->getEventManager();
         $event->attach(MvcEvent::EVENT_DISPATCH_ERROR, function (MvcEvent $e) {
             error_log('DISPATCH_ERROR : ' . $e->getError());
@@ -37,9 +42,6 @@ class Module implements ConfigProviderInterface, BootstrapListenerInterface
         $event->attach(MvcEvent::EVENT_RENDER_ERROR, function (MvcEvent $e) {
             error_log('RENDER_ERROR : ' . $e->getError());
         });
-
-     //   $controller = $sm->get('ControllerManager');
-      //  $controller->setService('MiniModule\Controller\IndexController', new IndexController());
     }
 
 }
