@@ -8,7 +8,7 @@ return array(
                 'options' => array(
                     'route' => '/',
                     'defaults' => array(
-                        'controller' => 'MiniModule\Controller\IndexController',
+                        'controller' => 'MiniModule\Controller\Index',
                         'action' => 'index'
                     )
                 )
@@ -27,8 +27,8 @@ return array(
     ),
 
     'controllers' => array(
-        'services' => array(
-            'MiniModule\Controller\IndexController' => new MiniModule\IndexController(),
+        'invokables' => array(
+            'MiniModule\Controller\Index' => 'MiniModule\Controller\IndexController',
         )
     )
 );
