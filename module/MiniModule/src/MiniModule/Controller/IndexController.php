@@ -19,6 +19,11 @@ class IndexController extends AbstractActionController
     {
         return array();
     }
+
+    /**
+     * on traite sans utiliser ZF
+     * @return array
+     */
     public function traiteAction()
     {
         return array( 'login' => $_GET['log'] );
