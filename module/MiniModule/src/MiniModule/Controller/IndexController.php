@@ -1,8 +1,9 @@
 <?php
 namespace MiniModule\Controller;
 
-use Zend\Form\Factory;
+use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 /**
  * Class IndexController
@@ -20,7 +21,17 @@ class IndexController extends AbstractActionController
     {
         $services = $this->getServiceLocator();
         $form = $services->get('MiniModule\Form\Authentification');
-        return array( 'form' => $form );
+        if ( $this->getRequest()->isPost() ) {
+            $form->setData( $this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $vm = new ViewModel();
+                $vm->setVariables( $form->getData() );
+                $vm->setTemplate('mini-module/index/traite');
+                return $vm;
+            }
+        }
+        $form->setAttribute('action', $this->url()->fromRoute('default', array('action' => 'form' )) );
+        return array( 'form' => $form ); // ici le viewManager est celui par défaut il est initialisé avec les valeurs retournées
     }
 
     public function traiteAction()

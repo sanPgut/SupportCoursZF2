@@ -3,5 +3,4 @@
 $form = $this->form;
 $form->prepare();
 // fixe l'action du formulaire à l'aide du View Helper Url (route, params)
-$form->setAttribute('action', $this->url('default', array('action' => 'traite' )) );
 echo $this->form($form);

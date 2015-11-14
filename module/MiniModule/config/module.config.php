@@ -37,6 +37,7 @@ return array(
             'mini-module/index/form' => __DIR__ . '/../view/index/form.phtml',
             'mini-module/index/traite' => __DIR__ . '/../view/index/traite.phtml',
         ),
+
     ),
 
     'controllers' => array(
