@@ -26,4 +26,13 @@ return array(
             ),
         ),
     ),
+    'input_filter' => array(
+        'login' => array(
+            'validators' => array(
+                array(
+                    'name' => 'Zend\I18n\Validator\Alpha',
+                ),
+            ),
+        ),
+    ),
 );
