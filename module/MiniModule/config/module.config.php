@@ -36,6 +36,7 @@ return array(
             'mini-module/index/index' => __DIR__ . '/../view/index/index.phtml',
             'mini-module/index/form' => __DIR__ . '/../view/index/form.phtml',
             'mini-module/index/traite' => __DIR__ . '/../view/index/traite.phtml',
+            'mini-module/index/gmaps' => __DIR__ . '/../view/index/gmaps.phtml',
         ),
     ),
 
@@ -53,4 +54,5 @@ return array(
             'config_authentification_form' => include __DIR__.'/authentification.form.comfig.php',
         ),
     ),
+
 );
