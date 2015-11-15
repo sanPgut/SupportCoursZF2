@@ -1,6 +1,11 @@
 <b>Authentification</b>
 <?php
 $form = $this->form;
+
+$authMessage = new \Zend\Stdlib\ArrayObject();
+$authMessage['login'] = 'Saisissez votre login';
+$form->bind($authMessage);
+
 $form->prepare();
 // fixe l'action du formulaire à l'aide du View Helper Url (route, params)
 echo $this->form($form);
