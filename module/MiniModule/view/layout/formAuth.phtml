@@ -1,0 +1,22 @@
+<?php
+// on customise le formulaire pour l'affichage
+$form = $this->form;
+$auth = $form->get('login');
+$auth->setAttribute( 'class', 'form-control');
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-default');
+$form->setAttributes( array(
+    'action' => $this->url('default', array('action' => 'form' )),
+    'class' => 'navbar-form navbar-right',
+    )
+);
+
+$form->prepare();
+
+// on affiche
+echo $this->form()->openTag($form);
+echo '<div class="form-group">';
+echo $this->formText($auth);
+echo '</div>';
+echo $this->formButton()->render( $submit, 'Se Connecter' );
+echo $this->form()->closeTag();
