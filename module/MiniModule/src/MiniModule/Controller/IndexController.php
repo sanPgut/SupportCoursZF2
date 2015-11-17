@@ -1,7 +1,6 @@
 <?php
 namespace MiniModule\Controller;
 
-use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -30,12 +29,10 @@ class IndexController extends AbstractActionController
                 return $vm;
             }
         }
-        $form->setAttribute('action', $this->url()->fromRoute('default', array('action' => 'form' )) );
-        return array( 'form' => $form ); // ici le viewManager est celui par défaut il est initialisé avec les valeurs retournées
-    }
-
-    public function traiteAction()
-    {
-        return array( 'login' => $_GET['log'] );
+        $layout = $this->layout();
+        $formViewManager = new ViewModel( array( 'form' => $form ) );
+        $formViewManager->setTemplate( 'layout/form-auth');
+        $layout->addChild( $formViewManager, 'formulaireAuth');
+        return array( ); // ici le viewManager est celui par défaut il est initialisé avec les valeurs retournées
     }
 }

@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/global.css" rel="stylesheet"/>
 </head>
 <body>
-<?php echo $this->content; ?>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <?php echo $this->formulaireAuth; ?>
+    </nav>
+
+    <?php echo $this->content;?>
+
+</div>
+<script src="jquery/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
 </body>
 </html>
