@@ -33,6 +33,7 @@ return array(
             'error' => __DIR__ . '/../view/error.phtml',
             'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
             'layout/form-auth' => __DIR__ . '/../view/layout/formAuth.phtml',
+            'layout/info-auth' => __DIR__ . '/../view/layout/infoAuth.phtml',
 
             'mini-module/index/index' => __DIR__ . '/../view/index/index.phtml',
             'mini-module/index/form' => __DIR__ . '/../view/index/form.phtml',
@@ -49,6 +50,9 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'MiniModule\Form\Authentification' => 'MiniModule\Form\AuthentificationFormFactory',
+        ),
+        'services' => array(
+            'session' => new \Zend\Session\Container('minimodule'),
         ),
     ),
 );

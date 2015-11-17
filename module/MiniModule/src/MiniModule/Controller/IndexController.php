@@ -2,7 +2,6 @@
 namespace MiniModule\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
 
 /**
@@ -24,12 +23,20 @@ class IndexController extends AbstractActionController
         if ( $this->getRequest()->isPost() ) {
             $form->setData( $this->getRequest()->getPost());
             if ($form->isValid()) {
+                $services->get('session')->user = $form->get('login')->getValue();
                 $vm = new ViewModel();
                 $vm->setVariables( $form->getData() );
-                $vm->setTemplate('mini-module/index/traite');
+                $vm->setTemplate('mini-module/index/index');
                 return $vm;
             }
         }
-        return array( ); // ici le viewManager est celui par défaut il est initialisé avec les valeurs retournées
+        return array( );
+    }
+    public function deconnectAction()
+    {
+        $services = $this->getServiceLocator();
+        unset($services->get('session')->user);
+        $this->redirect()->toRoute('home');
+
     }
 }

@@ -6,6 +6,7 @@ use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\MvcEvent;
+use Zend\Session\Container;
 use Zend\View\Model\ViewModel;
 
 
@@ -32,11 +33,18 @@ class Module implements ConfigProviderInterface, BootstrapListenerInterface, Aut
 
         $event->attach(MvcEvent::EVENT_RENDER, function (MvcEvent $e) {
             $services = $e->getApplication()->getServiceManager();
-            $form = $services->get('MiniModule\Form\Authentification');
+            $session = $services->get('session');
+            $rightViewModel = new ViewModel();
+            if (!isset($session->user)) {
+                $form = $services->get('MiniModule\Form\Authentification');
+                $rightViewModel->setVariables(array('form' => $form));
+                $rightViewModel->setTemplate('layout/form-auth');
+            } else {
+                $rightViewModel->setVariables(array('user' => $session->user));
+                $rightViewModel->setTemplate('layout/info-auth');
+            }
             $view = $e->getViewModel(); // c'est le viewModel qui contient le layout (top viewModel)
-            $formViewManager = new ViewModel( array( 'form' => $form ) );
-            $formViewManager->setTemplate( 'layout/form-auth');
-            $view->addChild( $formViewManager, 'formulaireAuth');
+            $view->addChild($rightViewModel, 'formulaireAuth');
         });
 
     }
