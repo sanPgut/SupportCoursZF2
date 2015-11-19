@@ -2,17 +2,18 @@
 namespace MiniModule\Form;
 
 use Zend\Form\Element\Submit;
-use Zend\Form\Form;
+use Zend\Form\Factory;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 
-class AuthentificationFormFactory implements  FactoryInterface
+class NewUserFormFactory implements  FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $form = new Form();
-        $form->add( new \MiniModule\Form\Element\Login() , array('priority' => 1));
+        $config = $serviceLocator->get('mini-module\form\config');
+        $factory = new Factory();
+        $form = $factory->createForm( $config['mini-module\form\new_user'] );
         $form->add( new Submit( 'submit') );
         return $form;
     }

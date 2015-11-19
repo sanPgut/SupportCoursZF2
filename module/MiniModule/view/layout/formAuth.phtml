@@ -4,7 +4,8 @@ $form = $this->form;
 $auth = $form->get('login');
 $auth->setAttribute( 'class', 'form-control');
 $submit = $form->get('submit');
-$submit->setAttribute('class', 'btn btn-default');
+$submit->setAttribute('class', 'btn btn-success btn-xs');
+
 $form->setAttributes( array(
     'action' => $this->url('default', array('action' => 'form' )),
     'class' => 'navbar-form navbar-right',
@@ -14,9 +15,40 @@ $form->setAttributes( array(
 $form->prepare();
 
 // on affiche
+echo '<li>';
 echo $this->form()->openTag($form);
 echo '<div class="form-group">';
 echo $this->formText($auth);
-echo '</div>';
+echo '</div>&nbsp;';
 echo $this->formButton()->render( $submit, 'Se Connecter' );
 echo $this->form()->closeTag();
+echo '</li>';
+?>
+<li>
+    &nbsp;<button type="button" class="btn btn-primary btn-xs navbar-btn" data-toggle="modal" data-target="#inscriptionModal">S'inscrire</span></button>
+</li>
+
+<?php
+$form = $this->newUserForm;
+?>
+<!-- Modal -->
+<div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <?php echo $this->form()->openTag($form); ?>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="inscriptionModalLabel">Créez votre compte</h4>
+            </div>
+            <div class="modal-body">
+                Votre login : <?php echo $this->formText( $form->get('login') ); ?><br/>
+                <?php echo $this->formCaptcha( $form->get('newUserCaptcha')); ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">s'inscrire</button>
+            </div>
+            <?php echo $this->form()->closeTag(); ?>
+        </div>
+    </div>
+</div>

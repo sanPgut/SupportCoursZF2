@@ -1,5 +1,5 @@
 <?php
-namespace MiniModule\Element;
+namespace MiniModule\Form\Element;
 
 use Zend\Form\Element;
 use Zend\InputFilter\InputProviderInterface;

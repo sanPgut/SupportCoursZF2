@@ -39,4 +39,6 @@ class IndexController extends AbstractActionController
         $this->redirect()->toRoute('home');
 
     }
+
+
 }

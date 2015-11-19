@@ -37,7 +37,8 @@ class Module implements ConfigProviderInterface, BootstrapListenerInterface, Aut
             $rightViewModel = new ViewModel();
             if (!isset($session->user)) {
                 $form = $services->get('MiniModule\Form\Authentification');
-                $rightViewModel->setVariables(array('form' => $form));
+                $formUser = $services->get('MiniModule\Form\NewUser');
+                $rightViewModel->setVariables(array('form' => $form, 'newUserForm' => $formUser));
                 $rightViewModel->setTemplate('layout/form-auth');
             } else {
                 $rightViewModel->setVariables(array('user' => $session->user));
