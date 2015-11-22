@@ -36,9 +36,24 @@ class IndexController extends AbstractActionController
     {
         $services = $this->getServiceLocator();
         unset($services->get('session')->user);
-        $this->redirect()->toRoute('home');
+        return $this->redirect()->toRoute('home');
 
     }
 
-
+    public function inscriptionAction()
+    {
+        $services = $this->getServiceLocator();
+        $form = $services->get('MiniModule\Form\NewUser');
+        if ( $this->getRequest()->isPost() ) {
+            $form->setData( $this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $services->get('session')->user = $form->get('login')->getValue();
+                return $this->redirect()->toRoute('default', array('action'=>'index'))->setStatusCode(205);
+            }
+        }
+        $viewModel = new ViewModel();
+        $viewModel->setVariables(array('formAuth' => $form ))
+                  ->setTerminal(true);
+        return $viewModel;
+    }
 }

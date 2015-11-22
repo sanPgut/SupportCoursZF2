@@ -14,6 +14,7 @@ class NewUserFormFactory implements  FactoryInterface
         $config = $serviceLocator->get('mini-module\form\config');
         $factory = new Factory();
         $form = $factory->createForm( $config['mini-module\form\new_user'] );
+        $form->setAttribute( 'id', 'formAuthId');
         $form->add( new Submit( 'submit') );
         return $form;
     }
